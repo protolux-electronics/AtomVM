@@ -17,8 +17,11 @@ CONFIG_SPIRAM_USE_MALLOC=y
 # and is also the only place FreeRTOS task stacks and DMA buffers can live.
 # At 4096 the 1K chunk binaries a partition read produces landed there and
 # accumulated as garbage - AtomVM's heap is in PSRAM, so nothing made it
-# collect - until a websocket client could not allocate its task.
-CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=512
+# collect - until a websocket client could not allocate its task. At 512 the
+# same happened to every refc binary a Bluesky session holds (posts, feeds,
+# TLS read chunks), until handshakes stalled. 64 is where AtomVM's own heap
+# binaries end, so every refc binary lives in PSRAM.
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=64
 CONFIG_SPIRAM_IGNORE_NOTFOUND=y
 
 # TLS working memory lives in PSRAM. Internal RAM cannot hold it: DMA buffers

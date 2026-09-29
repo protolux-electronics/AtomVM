@@ -78,6 +78,9 @@ static void select_thread_signal(struct ESP32PlatformData *platform);
 static const char *const esp_free_heap_size_atom = "\x14" "esp32_free_heap_size";
 static const char *const esp_largest_free_block_atom = "\x18" "esp32_largest_free_block";
 static const char *const esp_get_minimum_free_size_atom = "\x17" "esp32_minimum_free_size";
+// Internal RAM alone: the others count PSRAM too, which hides it running out.
+static const char *const esp_internal_free_size_atom = "\x18" "esp32_internal_free_size";
+static const char *const esp_internal_largest_free_block_atom = "\x21" "esp32_internal_largest_free_block";
 static const char *const esp_chip_info_atom = "\xF" "esp32_chip_info";
 static const char *const esp_idf_version_atom = "\xF" "esp_idf_version";
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(4, 3, 2)
@@ -604,6 +607,12 @@ term sys_get_info(Context *ctx, term key)
     }
     if (key == globalcontext_make_atom(glb, esp_get_minimum_free_size_atom)) {
         return term_from_int28(esp_get_minimum_free_heap_size());
+    }
+    if (key == globalcontext_make_atom(glb, esp_internal_free_size_atom)) {
+        return term_from_int28(heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    }
+    if (key == globalcontext_make_atom(glb, esp_internal_largest_free_block_atom)) {
+        return term_from_int28(heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
     }
     if (key == globalcontext_make_atom(glb, esp_chip_info_atom)) {
         esp_chip_info_t info;
