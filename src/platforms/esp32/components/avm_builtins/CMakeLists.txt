@@ -19,6 +19,7 @@
 #
 
 set(AVM_BUILTIN_COMPONENT_SRCS
+    "cjson_nif.c"
     "dac_driver.c"
     "gpio_driver.c"
     "i2c_driver.c"
@@ -56,7 +57,7 @@ endif()
 idf_component_register(
     SRCS ${AVM_BUILTIN_COMPONENT_SRCS}
     INCLUDE_DIRS "include"
-    PRIV_REQUIRES "libatomvm" "avm_sys" "nvs_flash" "driver" "esp_event" "esp_wifi" "fatfs" ${ADDITIONAL_PRIV_REQUIRES}
+    PRIV_REQUIRES "libatomvm" "avm_sys" "nvs_flash" "driver" "esp_event" "esp_wifi" "fatfs" "json" ${ADDITIONAL_PRIV_REQUIRES}
     ${OPTIONAL_WHOLE_ARCHIVE}
 )
 

@@ -53,6 +53,10 @@ config AVM_ENABLE_ADC_NIFS
             "ADC_ONESHOT_FORCE_USE_ADC2_ON_C3" must also be enabled in the "ADC and ADC Calibration"
             submenu.
 
+config AVM_ENABLE_CJSON_NIFS
+    bool "Enable cJSON NIFs"
+    default y
+
 config AVM_ENABLE_GPIO_NIFS
     bool "Enable GPIO NIFs"
     default y
