@@ -29,6 +29,8 @@ src/platforms/esp32/dependencies.lock
 !src/platforms/esp32/components/avm_sys/**
 !src/platforms/esp32/components/libatomvm/
 !src/platforms/esp32/components/libatomvm/**
+!src/platforms/esp32/components/atomvm_espnow
+!src/platforms/esp32/components/atomvm_espnow/**
 .idea/**
 .vscode/**
 .DS_Store

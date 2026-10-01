@@ -6,3 +6,7 @@
 	path = src/platforms/esp32/badge/components/atomvm_websocket_client
 	url = https://github.com/protolux-electronics/atomvm_websocket_client.git
 	branch = main
+[submodule "src/platforms/esp32/components/atomvm_espnow"]
+	path = src/platforms/esp32/components/atomvm_espnow
+	url = https://github.com/TomHoenderdos/atomvm_espnow.git
+	branch = main
